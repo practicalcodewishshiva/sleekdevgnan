@@ -1,67 +1,75 @@
 
-import { Code, PenTool, BarChart, Smartphone, Puzzle, Zap } from "lucide-react";
+import { Code, PenTool, Database, Smartphone, Puzzle, Terminal } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import AnimatedElement from "./AnimatedElement";
 
 const services = [
   {
-    title: "Web Design",
-    description: "Stunning, functional websites that captivate your audience and drive conversions.",
-    icon: PenTool,
-  },
-  {
-    title: "Web Development",
-    description: "Custom, responsive websites built with the latest technologies for optimal performance.",
+    title: "Frontend Development",
+    description: "Modern, responsive interfaces built with React, Next.js, and TypeScript for exceptional user experiences.",
     icon: Code,
   },
   {
-    title: "Mobile Apps",
-    description: "Native and cross-platform mobile applications that deliver seamless user experiences.",
+    title: "UI/UX Design",
+    description: "User-centered design thinking that balances aesthetics with functionality for intuitive digital experiences.",
+    icon: PenTool,
+  },
+  {
+    title: "Backend Systems",
+    description: "Scalable, secure API and database architecture using Node.js, Python, and cloud-native technologies.",
+    icon: Database,
+  },
+  {
+    title: "Mobile Development",
+    description: "Cross-platform and native mobile apps that provide seamless experiences across all devices.",
     icon: Smartphone,
   },
   {
-    title: "UI/UX Design",
-    description: "User-centered design solutions that enhance usability and delight your customers.",
+    title: "System Architecture",
+    description: "Thoughtful, scalable system design that supports growth and handles complex business requirements.",
     icon: Puzzle,
   },
   {
-    title: "Digital Marketing",
-    description: "Strategic digital marketing campaigns that boost your online presence and ROI.",
-    icon: BarChart,
-  },
-  {
-    title: "Brand Strategy",
-    description: "Comprehensive brand strategies that position your business for long-term success.",
-    icon: Zap,
+    title: "DevOps & CI/CD",
+    description: "Automated workflows, containerization, and infrastructure as code for reliable deployment pipelines.",
+    icon: Terminal,
   },
 ];
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="section bg-secondary/50">
+    <section id="services" className="section bg-secondary/30">
       <div className="container mx-auto">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="mb-4">Our Services</h2>
-          <p className="text-lg text-foreground/70">
-            We provide end-to-end solutions tailored to your business needs,
-            helping you stand out in the digital landscape.
-          </p>
-        </div>
+        <AnimatedElement animation="fade-in">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <div className="inline-block py-1 px-4 bg-accent/20 rounded-full text-accent text-sm font-medium mb-4">
+              Our Expertise
+            </div>
+            <h2 className="mb-4 font-display">Services That Drive Results</h2>
+            <p className="text-lg text-foreground/70">
+              We provide end-to-end development solutions tailored to your business needs,
+              helping you build exceptional digital products.
+            </p>
+          </div>
+        </AnimatedElement>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="card-hover border border-border/50">
-              <CardHeader>
-                <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
-                  <service.icon className="w-6 h-6 text-accent" />
-                </div>
-                <CardTitle>{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-foreground/70 text-base">
-                  {service.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <AnimatedElement key={index} animation="fade-in" delay={100 * index} className="h-full">
+              <Card className="card-hover h-full border-border/50 bg-card/50 backdrop-blur-sm">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
+                    <service.icon className="w-6 h-6 text-accent" />
+                  </div>
+                  <CardTitle className="font-display">{service.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-foreground/70 text-base">
+                    {service.description}
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </AnimatedElement>
           ))}
         </div>
       </div>
