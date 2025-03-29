@@ -7,6 +7,7 @@ import WorkSection from "@/components/WorkSection";
 import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import CareersSection from "@/components/CareersSection";
 
 const Index = () => {
   const sectionsRef = useRef<HTMLDivElement>(null);
@@ -41,7 +42,8 @@ const Index = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate-fade-in');
-            entry.target.style.opacity = '1';
+            const htmlElement = entry.target as HTMLElement;
+            htmlElement.style.opacity = '1';
           }
         });
       },
@@ -50,7 +52,8 @@ const Index = () => {
     
     document.querySelectorAll('section').forEach((section) => {
       if (section.id !== 'hero') {
-        section.style.opacity = '0';
+        const htmlSection = section as HTMLElement;
+        htmlSection.style.opacity = '0';
         observer.observe(section);
       }
     });
@@ -68,6 +71,7 @@ const Index = () => {
       <ServicesSection />
       <WorkSection />
       <AboutSection />
+      <CareersSection />
       <ContactSection />
       <Footer />
     </div>

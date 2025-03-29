@@ -36,7 +36,7 @@ const Navbar = () => {
           </AnimatedElement>
 
           <nav className="hidden md:flex items-center space-x-8">
-            {["services", "work", "about", "contact"].map((item, index) => (
+            {["services", "work", "about", "careers", "contact"].map((item, index) => (
               <AnimatedElement key={item} animation="fade-in" delay={300 + (index * 100)} duration={500}>
                 <a 
                   href={`#${item}`} 
@@ -76,7 +76,7 @@ const Navbar = () => {
         }`}
       >
         <div className="px-2 pt-2 pb-3 space-y-1 bg-background/95 backdrop-blur-sm shadow-lg border-t border-border">
-          {["services", "work", "about", "contact"].map((item, index) => (
+          {["services", "work", "about", "careers", "contact"].map((item, index) => (
             <a 
               key={item}
               href={`#${item}`} 
