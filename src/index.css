@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -124,6 +123,47 @@
   
   .rotate-hover:hover {
     transform: rotate(5deg);
+  }
+
+  .glass-card {
+    @apply backdrop-blur-md bg-white/5 border border-white/10 shadow-lg;
+  }
+
+  .animated-border {
+    @apply relative;
+  }
+
+  .animated-border::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    background: linear-gradient(90deg, #9146FF, #764BA2, #667EEA, #9146FF);
+    background-size: 300% 100%;
+    border-radius: inherit;
+    animation: border-rotate 4s linear infinite;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .animated-border:hover::after {
+    opacity: 1;
+  }
+
+  .perspective {
+    perspective: 1000px;
+  }
+  
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -270,26 +310,106 @@
 
 .text-reveal span {
   display: inline-block;
-  transform: translateY(100%);
-  animation: textReveal 0.5s forwards;
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-@keyframes textReveal {
-  to {
-    transform: translateY(0);
-  }
+.text-reveal span.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Glow pulse */
-.glow-pulse {
-  animation: glowPulse 2s infinite alternate;
-}
-
-@keyframes glowPulse {
+/* Animated background gradient */
+@keyframes gradient-animation {
   0% {
-    filter: drop-shadow(0 0 5px rgba(145, 70, 255, 0.4));
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
   100% {
-    filter: drop-shadow(0 0 20px rgba(145, 70, 255, 0.7));
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient {
+  background: linear-gradient(-45deg, var(--accent), #764BA2, #667EEA, var(--accent));
+  background-size: 400% 400%;
+  animation: gradient-animation 15s ease infinite;
+}
+
+/* Animated border */
+@keyframes border-rotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+/* Subtle image parallax effect */
+.parallax {
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+}
+
+.parallax-layer {
+  transform: translateZ(0);
+  transition: transform 0.2s ease-out;
+}
+
+.parallax:hover .parallax-layer-1 {
+  transform: translateZ(20px);
+}
+
+.parallax:hover .parallax-layer-2 {
+  transform: translateZ(40px);
+}
+
+.parallax:hover .parallax-layer-3 {
+  transform: translateZ(60px);
+}
+
+/* Loading bar animation */
+@keyframes loading-progress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.loading-bar {
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), #764BA2);
+  animation: loading-progress 2s ease-out forwards;
+}
+
+/* 3D card effect */
+.card-3d {
+  transition: transform 0.5s ease;
+  transform-style: preserve-3d;
+}
+
+.card-3d:hover {
+  transform: rotateX(5deg) rotateY(5deg);
+}
+
+/* Enhanced fade-in animation */
+.animate-fade-in {
+  animation: enhanced-fade-in 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+
+@keyframes enhanced-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
